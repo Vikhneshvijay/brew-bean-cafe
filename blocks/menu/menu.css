@@ -1,0 +1,27 @@
+.menu ul {
+  display: grid;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu .menu-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu .menu-item h3 {
+  margin: 0;
+}
+
+.menu .menu-item p {
+  margin: 0;
+}
+
+@media (width >= 900px) {
+  .menu ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

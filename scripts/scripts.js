@@ -13,6 +13,22 @@ import {
 } from './aem.js';
 
 /**
+ * Move data-aue-* (Universal Editor) and data-richtext-* instrumentation
+ * attributes from one element to another, so editing survives DOM rebuilds.
+ * @param {Element} from the element currently carrying the attributes
+ * @param {Element} to the element that should receive them
+ */
+export function moveInstrumentation(from, to) {
+  [...from.attributes]
+    .map(({ nodeName }) => nodeName)
+    .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-'))
+    .forEach((attr) => {
+      to.setAttribute(attr, from.getAttribute(attr));
+      from.removeAttribute(attr);
+    });
+}
+
+/**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
